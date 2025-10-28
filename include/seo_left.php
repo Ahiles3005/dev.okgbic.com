@@ -1,0 +1,2 @@
+<img src="/local/templates/bitlate_pro/images/main_seo_photo_large.jpg" alt="" class="show-for-xxlarge">
+<img src="/local/templates/bitlate_pro/images/main_seo_photo.jpg" alt="" class="hide-for-xxlarge">

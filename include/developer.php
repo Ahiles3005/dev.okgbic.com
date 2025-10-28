@@ -1,0 +1,1 @@
+<a href="/include/agreement.php" class="fancybox" data-fancybox-type="iframe">Политика конфиденциальности</a>
