@@ -2,7 +2,9 @@
 
 use Bitrix\Main\Loader;
 use Bitrix\Main\Localization\Loc;
-if (strpos($_SERVER['HTTP_USER_AGENT'], 'Lighthouse') > 0) {define('IS_LIGHTHOUSE', true);}
+if (strpos($_SERVER['HTTP_USER_AGENT'], 'Lighthouse') > 0) {
+    define('IS_LIGHTHOUSE', true);
+}
 use intec\Core;
 use intec\core\helpers\FileHelper;
 use intec\core\helpers\JavaScript;
