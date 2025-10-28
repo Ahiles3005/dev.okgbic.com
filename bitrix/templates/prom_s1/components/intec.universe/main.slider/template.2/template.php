@@ -66,7 +66,10 @@ $bSlideNum = 0;
                             'role' => 'container'
                         ]
                     ]) ?>
-                        <?php foreach ($arResult['ITEMS'] as $arItem) {
+                        <?
+                        $setLinkPreload = true;
+                        ?>
+                        <?php foreach ($arResult['ITEMS'] as $_i=> $arItem) {
 
                             $sId = $sTemplateId.'_'.$arItem['ID'];
                             $sAreaId = $this->GetEditAreaId($sId);
@@ -83,6 +86,13 @@ $bSlideNum = 0;
 
                             if (empty($sPicture))
                                 $sPicture = SITE_TEMPLATE_PATH.'/images/picture.missing.png';
+
+                            if($setLinkPreload){
+                                \Bitrix\Main\Page\Asset::getInstance()->addString(
+                                        '<link rel="preload" as="image" fetchpriority="high" href="'.$sPicture.'">'
+                                );
+                                $setLinkPreload = false;
+                            }
 
                         ?>
                             <?= Html::beginTag($sTag, [
