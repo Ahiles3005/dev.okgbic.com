@@ -13,8 +13,8 @@ use intec\core\io\Path;
  * @var Path $path
  * @global CMain $APPLICATION
  */
-if(IS_LIGHTHOUSE !== true):
-?>           
+if(defined('IS_LIGHTHOUSE') && IS_LIGHTHOUSE !== true):
+?>
 <?= Html::beginTag('div') ?>
     <?php $APPLICATION->IncludeComponent(
     "intec.universe:main.widget", 
