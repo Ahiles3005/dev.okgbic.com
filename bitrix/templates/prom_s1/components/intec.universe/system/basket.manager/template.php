@@ -36,19 +36,28 @@ $this->setFrameMode(true);
         };
 
         update = function () {
-            $.ajax(<?= JavaScript::toObject($arResult['ACTION']) ?>, {
-                'type': 'POST',
-                'cache': false,
-                'dataType': 'json',
-                'data': <?= JavaScript::toObject($arParams) ?>,
-                'success': function (response) {
-                    data = response;
-                    run();
-                }
-            })
+            function getData(){
+                $.ajax(<?= JavaScript::toObject($arResult['ACTION']) ?>, {
+                    'type': 'POST',
+                    'cache': false,
+                    'dataType': 'json',
+                    'data': <?= JavaScript::toObject($arParams) ?>,
+                    'success': function (response) {
+                        data = response;
+                        run();
+                    }
+                })
+            }
+
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(function(){ getData(); }, { timeout: 2500 });
+            } else {
+                setTimeout(function(){ getData(); }, 0);
+            }
+
         };
 
-        update();
+        // update();
 
         $(document).on('click', '[data-basket-id][data-basket-action]', function () {
             var node = $(this);
