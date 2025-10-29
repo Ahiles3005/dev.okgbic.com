@@ -470,3 +470,38 @@ function UpdateCatalogPrice($ID, $arFields){
 \Bitrix\Main\Loader::registerAutoLoadClasses(null, array(
     '\Olegpro\Classes\Handlers\Search\Stemming' => '/local/php_interface/classes/handlers/search/stemming.php',
 ));
+
+
+AddEventHandler("main", "OnEndBufferContent", "replace_css_tag");
+function replace_css_tag(&$content)
+{
+    $pattern = '/<link[^>]*href=["\']([^"\']*main\.popup\.bundle\.min\.css\?[^"\']*)["\'][^>]*>/';
+    $content = preg_replace($pattern, '', $content);
+
+    $pattern = '/<link[^>]*href=["\']([^"\']*ui\.design-tokens\.min\.css\?[^"\']*)["\'][^>]*>/';
+    $content = preg_replace($pattern, '', $content);
+
+
+    $js = "
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = '/bitrix/js/ui/design-tokens/dist/ui.design-tokens.min.css';
+            document.body.appendChild(link);
+            
+            link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = '/bitrix/js/main/popup/dist/main.popup.bundle.min.css';
+            document.body.appendChild(link);
+            
+        });
+    </script>
+    </body>
+";
+    $content = str_replace('</body>', $js, $content);
+    return $content;
+}
+
+
+
