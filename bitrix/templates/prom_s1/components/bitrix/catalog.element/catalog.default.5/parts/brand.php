@@ -19,8 +19,11 @@ $arPicture = CFile::ResizeImageGet($arFields['BRAND']['VALUE']['PICTURE'], [
             'alt' => $arFields['BRAND']['VALUE']['NAME'],
             'title' => $arFields['BRAND']['VALUE']['NAME'],
             'loading' => 'lazy',
+            'width' => '80',
+            'heigth' => '25',
             'data-lazyload-use' => $arVisual['LAZYLOAD']['USE'] ? 'true' : 'false',
             'data-original' => $arVisual['LAZYLOAD']['USE'] ? $arPicture['src'] : null
+
         ]) ?>
     </a>
 </div>

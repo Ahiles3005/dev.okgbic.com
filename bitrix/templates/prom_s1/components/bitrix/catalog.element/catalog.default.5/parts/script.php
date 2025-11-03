@@ -25,6 +25,7 @@ if ($bBase)
 
 ?>
 <script>
+
     (function ($, api) {
         $(function () {
             let area = $(document);
@@ -691,6 +692,7 @@ dynamic.properties.each(function () {
                 pictures.slider = $('[data-role="gallery.pictures.slider"]', pictures);
                 pictures.items = $('[data-role="gallery.pictures.item"]', pictures);
 
+
                 preview.slider = $('[data-role="gallery.preview.slider"]', preview);
                 preview.items = $('[data-role="gallery.preview.slider.item"]', preview);
                 preview.navigation = $('[data-role="gallery.preview.navigation"]', preview);
@@ -698,29 +700,33 @@ dynamic.properties.each(function () {
                 pictures.slider.owlCarousel({
                     'items': 1,
                     'nav': false,
-                    'dots': false
+                    'dots': false,
+                    'lazyLoad':true,
                 });
 
-                preview.slider.owlCarousel({
-                    'items': 3,
-                    'margin': 8,
-                    'nav': true,
-                    'navContainer': preview.navigation,
-                    'navClass': ['preview-navigation-left', 'preview-navigation-right'],
-                    'navText': [
-                        <?= JavaScript::toObject($arSvg['NAVIGATION']['LEFT']) ?>,
-                        <?= JavaScript::toObject($arSvg['NAVIGATION']['RIGHT']) ?>
-                    ],
-                    'dots': false
-                });
+                    preview.slider.owlCarousel({
+                        'items': 3,
+                        'margin': 8,
+                        'nav': true,
+                        'lazyLoad':true,
+                        'navContainer': preview.navigation,
+                        'navClass': ['preview-navigation-left', 'preview-navigation-right'],
+                        'navText': [
+                            <?= JavaScript::toObject($arSvg['NAVIGATION']['LEFT']) ?>,
+                            <?= JavaScript::toObject($arSvg['NAVIGATION']['RIGHT']) ?>
+                        ],
+                        'dots': false
+                    });
 
-                pictures.slider.on('dragged.owl.carousel', function (event) {
-                    let index = event.item.index;
+                    pictures.slider.on('dragged.owl.carousel', function (event) {
+                        let index = event.item.index;
 
-                    preview.slider.trigger('to.owl.carousel', index);
-                    preview.items.attr('data-active', 'false');
-                    preview.items.eq(index).attr('data-active', 'true');
-                });
+                        preview.slider.trigger('to.owl.carousel', index);
+                        preview.items.attr('data-active', 'false');
+                        preview.items.eq(index).attr('data-active', 'true');
+                    });
+
+
 
                 if (pictures.action === 'popup') {
                     pictures.slider.lightGallery({
@@ -742,14 +748,16 @@ dynamic.properties.each(function () {
                     });
                 }
 
-                preview.items.on('click', function () {
-                    let item = $(this);
-                    let index = item.closest('.owl-item').index();
+                    preview.items.on('click', function () {
+                        let item = $(this);
+                        let index = item.closest('.owl-item').index();
 
-                    preview.items.attr('data-active', 'false');
-                    item.attr('data-active', 'true');
-                    pictures.slider.trigger('to.owl.carousel', index);
-                });
+                        preview.items.attr('data-active', 'false');
+                        item.attr('data-active', 'true');
+                        pictures.slider.trigger('to.owl.carousel', index);
+                    });
+
+
             });
 
             if (root.anchors.length) {

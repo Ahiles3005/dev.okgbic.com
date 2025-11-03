@@ -92,7 +92,9 @@ $arVisual = $arResult['VISUAL'];
                                                 'title' => $arItem['NAME'],
                                                 'loading' => 'lazy',
                                                 'data-lazyload-use' => $arVisual['LAZYLOAD']['USE'] ? 'true' : 'false',
-                                                'data-original' => $arVisual['LAZYLOAD']['USE'] ? $sPicture : null
+                                                'data-original' => $arVisual['LAZYLOAD']['USE'] ? $sPicture : null,
+                                                'width'=>'56',
+                                                'height'=>'56',
                                             ]) ?>
                                             <div class="intec-aligner"></div>
                                         <?= Html::endTag('a') ?>

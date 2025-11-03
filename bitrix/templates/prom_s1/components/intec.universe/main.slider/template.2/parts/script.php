@@ -68,6 +68,7 @@ $arSettings = [
         if (settings.slider.use) {
             container.owlCarousel({
                 'items': settings.slider.items,
+                'lazyLoad':true,
                 'nav': settings.slider.nav,
                 'navContainer': settings.slider.navContainer,
                 'navClass': settings.slider.navClass,

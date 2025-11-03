@@ -33,6 +33,13 @@ use intec\core\helpers\Html;
                 ], true),
                 'data-role' => count($arItem['GALLERY']) > 1 ? 'gallery.pictures.slider' : null
             ]) ?>
+
+
+<?php
+
+    $setLinkPreload = true;
+    ?>
+
                 <?php if (!empty($arItem['GALLERY'])) { ?>
                     <?php foreach ($arItem['GALLERY'] as $kPicture => $arPicture) {
 
@@ -54,32 +61,41 @@ use intec\core\helpers\Html;
                                 <?= Html::img(
 //					$arVisual['LAZYLOAD']['USE'] && $kPicture ? 
 //					$arVisual['LAZYLOAD']['STUB'] : 
-//					$sPicture[$kPicture]['src'] 
-					$arPicture['SRC']
+					$sPicture[$kPicture]['src']
+//					$arPicture['SRC']
 				, [
 
-                                    'srcset' => $arVisual['LAZYLOAD']['USE'] && $kPicture ? 
-					$arVisual['LAZYLOAD']['STUB'] : 
-					$sPicture[$kPicture]['src'],
+                                    /*'srcset' => $arVisual['LAZYLOAD']['USE'] && $kPicture ?
+					$arVisual['LAZYLOAD']['STUB'] :
+					$sPicture[$kPicture]['src'],*/
 
+                                    'width' => '480',
+                                    'height' => '480',
+                                    'fetchpriority' => $setLinkPreload ? 'high':'low',
                                     'alt' => $arResult['NAME'],
                                     'title' => $arResult['NAME'],
 //                                    'itemprop' => 'image',
                                     'loading' => $arVisual['LAZYLOAD']['USE'] && $kPicture ? 'lazy' : null,
                                     'data-lazyload-use' => $arVisual['LAZYLOAD']['USE'] && $kPicture ? 'true' : 'false',
-                                    'data-original-set' => $arVisual['LAZYLOAD']['USE'] && $kPicture ? 
+                                    'data-original-set' => $arVisual['LAZYLOAD']['USE'] && $kPicture ?
 					$sPicture[$kPicture]['src'] : null
 //					$arPicture['SRC'] : null
                                 ]) ?>
-                                <meta itemprop="image" content="<?= 
-//					$sPicture[$kPicture]['src'] 
+                                <meta itemprop="image" content="<?=
+//					$sPicture[$kPicture]['src']
 					$arPicture['SRC']
 				?>"/>
                                 <div class="intec-aligner"></div>
                             <?= Html::endTag($arVisual['GALLERY']['ACTION'] === 'source' ? 'a' : 'div') ?>
                         </div>
+
+            <?
+            if($setLinkPreload){
+                $setLinkPreload = false;
+            }
+            ?>
                     <?php } ?>
-                    <?php unset($arPicture, 
+                    <?php unset($arPicture,
 //			$sPicture, 
 			$kPicture
                     ) ?>
@@ -122,9 +138,11 @@ use intec\core\helpers\Html;
                             <div class="catalog-element-gallery-preview-slider-item-picture">
                                 <?= Html::img($arPicture['SRC']
 				, [
-                                    'srcset' => $arVisual['LAZYLOAD']['USE'] ? 
-					$arVisual['LAZYLOAD']['STUB'] : 
+                                    'srcset' => $arVisual['LAZYLOAD']['USE'] ?
+					$arVisual['LAZYLOAD']['STUB'] :
 					$sPicture[$kPicture]['src'],
+                                                'width' => '64',
+                                                'height' => '64',
                                     'alt' => $arResult['NAME'],
                                     'title' => $arResult['NAME'],
                                     'loading' => 'lazy',
@@ -154,3 +172,13 @@ use intec\core\helpers\Html;
     } ?>
 </div>
 <?php unset($vGallery) ?>
+
+<style>
+     .ns-bitrix.c-catalog-element.c-catalog-element-catalog-default-5 .owl-item.active .catalog-element-gallery-pictures-slider-item-picture img{
+        display: inline-block;
+    }
+     .ns-bitrix.c-catalog-element.c-catalog-element-catalog-default-5 .owl-item .catalog-element-gallery-pictures-slider-item-picture img{
+        display: none;
+    }
+
+</style>

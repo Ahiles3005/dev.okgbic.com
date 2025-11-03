@@ -472,35 +472,23 @@ function UpdateCatalogPrice($ID, $arFields){
 ));
 
 
-AddEventHandler("main", "OnEndBufferContent", "replace_css_tag");
-function replace_css_tag(&$content)
+AddEventHandler("main", "OnEndBufferContent", "remove_specific_css");
+
+function remove_specific_css(&$content)
 {
-    $pattern = '/<link[^>]*href=["\']([^"\']*main\.popup\.bundle\.min\.css\?[^"\']*)["\'][^>]*>/';
-    $content = preg_replace($pattern, '', $content);
+    // Массив паттернов для удаления
+    $patterns = [
+//            '/<link[^>]*main\.popup\.bundle\.min\.css[^>]*>/i',
+            '/<link[^>]*ui\.design-tokens\.min\.css[^>]*>/i',
+            '/<link[^>]*ui\.font\.opensans\.min\.css[^>]*>/i'
+    ];
 
-    $pattern = '/<link[^>]*href=["\']([^"\']*ui\.design-tokens\.min\.css\?[^"\']*)["\'][^>]*>/';
-    $content = preg_replace($pattern, '', $content);
+    foreach ($patterns as $pattern) {
+        $content = preg_replace($pattern, '', $content);
+    }
 
-
-    $js = "
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = '/bitrix/js/ui/design-tokens/dist/ui.design-tokens.min.css';
-            document.body.appendChild(link);
-            
-            link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = '/bitrix/js/main/popup/dist/main.popup.bundle.min.css';
-            document.body.appendChild(link);
-            
-        });
-    </script>
-    </body>
-";
-    $content = str_replace('</body>', $js, $content);
-    return $content;
+    // Очищаем множественные переносы строк
+//    $content = preg_replace('/\n\s*\n/', "\n", $content);
 }
 
 
