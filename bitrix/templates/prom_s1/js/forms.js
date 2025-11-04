@@ -67,7 +67,7 @@ universe.forms = (function (universe, $, api) {
                 'style': 'display: none'
             }).append(response).appendTo($('body'));
 
-	        $('.telClass').inputmask('+7 (999) 999-99-99', {showMaskOnHover: false});
+	        // $('.telClass').inputmask('+7 (999) 999-99-99', {showMaskOnHover: false});
 
             container = container.get(0);
 

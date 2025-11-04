@@ -19,12 +19,10 @@ if ($USER->IsAdmin()){
 $sTemplateId = Html::getUniqueId(null, Component::getUniqueId($this, true));
 ?>
 <script>
-	$(document).on('ready', function () {
+	/*$(document).on('ready', function () {
 		$('input[type="tel"]').inputmask('+7 (999) 999-99-99', {showMaskOnHover: false});
 		$('.telClass').inputmask('+7 (999) 999-99-99', {showMaskOnHover: false});
-/* 		console.log(125896);
-		console.log($('.telClass')); */
-	});
+	});*/
 </script>
 <div class="ns-bitrix c-form-result-new c-form-result-new-template-1 intec-form" id="<?= $sTemplateId ?>">
     <?php if ($arResult['isFormNote'] == 'Y') { ?>

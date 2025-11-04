@@ -50,7 +50,7 @@ $web->js->addFile($directory.'/plugins/jquery.mousewheel/jquery.mousewheel.js');
 //$web->js->addFile($directory.'/plugins/jquery.zoom/jquery.zoom.js');
 $web->js->addFile($directory.'/plugins/jquery.scrollTo/jquery.scrollTo.js');
 $web->js->addFile($directory.'/plugins/sly/sly.js');
-$web->js->addFile($directory.'/plugins/jquery.inputmask/jquery.inputmask.js');
+//$web->js->addFile($directory.'/plugins/jquery.inputmask/jquery.inputmask.js'); //отключаем, нигде не используется
 
 if (Core::$app->browser->isDesktop)
     $web->js->addFile($directory.'/plugins/jquery.stellar/jquery.stellar.js');
