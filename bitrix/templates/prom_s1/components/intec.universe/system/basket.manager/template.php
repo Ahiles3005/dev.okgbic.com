@@ -36,7 +36,6 @@ $this->setFrameMode(true);
         };
 
         update = function () {
-            function getData(){
                 $.ajax(<?= JavaScript::toObject($arResult['ACTION']) ?>, {
                     'type': 'POST',
                     'cache': false,
@@ -47,14 +46,6 @@ $this->setFrameMode(true);
                         run();
                     }
                 })
-            }
-
-            if ('requestIdleCallback' in window) {
-                requestIdleCallback(function(){ getData(); }, { timeout: 2500 });
-            } else {
-                setTimeout(function(){ getData(); }, 0);
-            }
-
         };
 
         // update();
@@ -136,6 +127,10 @@ $this->setFrameMode(true);
         universe.compare.on('update', update);
 
         BX.addCustomEvent('onFrameDataReceived', update);
-        BX.ready(update);
+
+        BX.ready(function (){
+            setTimeout(function(){ update(); }, 5000);
+        });
+
     })($, intec);
 </script>
