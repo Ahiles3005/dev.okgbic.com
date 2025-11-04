@@ -2,8 +2,9 @@
   font-family: 'IntecIcons';
   src:  url('./intec.eot');
   src:  url('./intec.eot#iefix') format('embedded-opentype'),
-    url('./intec.ttf') format('truetype'),
+    url('./intec.woff2') format('woff2'),
     url('./intec.woff') format('woff'),
+    url('./intec.ttf') format('truetype'),
     url('./intec.svg#IntecIcons') format('svg');
   font-weight: normal;
   font-style: normal;

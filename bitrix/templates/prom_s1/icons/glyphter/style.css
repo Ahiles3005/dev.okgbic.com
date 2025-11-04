@@ -3,6 +3,7 @@
     font-family: 'Glyphter';
     src: url('./fonts/Glyphter.eot');
     src: url('./fonts/Glyphter.eot?#iefix') format('embedded-opentype'),
+         url('./fonts/Glyphter.woff2') format('woff2'),
          url('./fonts/Glyphter.woff') format('woff'),
          url('./fonts/Glyphter.ttf') format('truetype'),
          url('./fonts/Glyphter.svg#Glyphter') format('svg');
