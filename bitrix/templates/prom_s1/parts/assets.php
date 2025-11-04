@@ -52,6 +52,17 @@ $web->js->addFile($directory.'/plugins/jquery.scrollTo/jquery.scrollTo.js');
 $web->js->addFile($directory.'/plugins/sly/sly.js');
 //$web->js->addFile($directory.'/plugins/jquery.inputmask/jquery.inputmask.js'); //отключаем, нигде не используется
 
+
+//обьединяю и подключаю сразу, что бы они потом отдельно не грузились
+// в ините вырезаю их
+// start
+///bitrix/js/ui/design-tokens/dist/ui.design-tokens.css
+///bitrix/js/ui/fonts/opensans/ui.font.opensans.css
+///bitrix/js/main/popup/dist/main.popup.bundle.css
+$web->css->addFile($directory.'/css/bx.popup.css');
+//end
+
+
 if (Core::$app->browser->isDesktop)
     $web->js->addFile($directory.'/plugins/jquery.stellar/jquery.stellar.js');
 

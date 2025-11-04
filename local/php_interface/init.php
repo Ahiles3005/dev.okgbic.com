@@ -476,9 +476,10 @@ AddEventHandler("main", "OnEndBufferContent", "remove_specific_css");
 
 function remove_specific_css(&$content)
 {
-    // Массив паттернов для удаления
+    // Массив паттернов для удаления.
+    //сделал отдельный стиль /шаблон/css/bx.popup.css
     $patterns = [
-//            '/<link[^>]*main\.popup\.bundle\.min\.css[^>]*>/i',
+           '/<link[^>]*main\.popup\.bundle\.min\.css[^>]*>/i',
             '/<link[^>]*ui\.design-tokens\.min\.css[^>]*>/i',
             '/<link[^>]*ui\.font\.opensans\.min\.css[^>]*>/i'
     ];
@@ -487,8 +488,6 @@ function remove_specific_css(&$content)
         $content = preg_replace($pattern, '', $content);
     }
 
-    // Очищаем множественные переносы строк
-//    $content = preg_replace('/\n\s*\n/', "\n", $content);
 }
 
 
