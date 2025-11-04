@@ -30,11 +30,22 @@ $web->js->loadExtensions(['jquery', 'intec_core', 'intec_core_controls', 'ajax',
 //$web->css->addFile($directory.'/plugins/bootstrap/css/bootstrap.css'); //заменил на bootstrap-minimal.css
 $web->css->addFile($directory.'/plugins/bootstrap/css/bootstrap-minimal.css');
 //$web->css->addFile($directory.'/plugins/bootstrap/css/bootstrap-theme.css'); //отключил так как он не нужен
-$web->css->addFile($directory.'/plugins/jquery.colorpicker/jquery.colorpicker.css');
+
+global $USER;
+if ($USER->IsAuthorized()) {
+    $web->css->addFile($directory . '/plugins/jquery.colorpicker/jquery.colorpicker.css');
+}
+
+
 $web->css->addFile($directory.'/css/public.css'); // Deprecated
 //$web->js->addFile($directory.'/plugins/bootstrap/js/bootstrap.js'); //заменил на bootstrap-minimal.js
 $web->js->addFile($directory.'/plugins/bootstrap/js/bootstrap-minimal.js');
-$web->js->addFile($directory.'/plugins/jquery.colorpicker/jquery.colorpicker.js');
+
+if ($USER->IsAuthorized()) {
+    $web->js->addFile($directory . '/plugins/jquery.colorpicker/jquery.colorpicker.js');
+}
+
+
 $web->js->addFile($directory.'/plugins/jquery.mousewheel/jquery.mousewheel.js');
 //$web->js->addFile($directory.'/plugins/jquery.zoom/jquery.zoom.js');
 $web->js->addFile($directory.'/plugins/jquery.scrollTo/jquery.scrollTo.js');
