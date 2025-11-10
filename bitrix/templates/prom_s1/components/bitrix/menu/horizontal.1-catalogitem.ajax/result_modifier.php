@@ -30,20 +30,6 @@ $arMacros = [
     'SITE_TEMPLATE_PATH' => SITE_TEMPLATE_PATH.'/'
 ];
 
-$arParams['SECTION_VIEW'] = ArrayHelper::fromRange(['default', 'images', 'information'], $arParams['SECTION_VIEW']);
-$arParams['SUBMENU_VIEW'] = ArrayHelper::fromRange(['simple.1', 'simple.2'], $arParams['SUBMENU_VIEW']);
-
-$sPageUrl = $APPLICATION->GetCurPage();
-
-foreach ($arResult as &$arItem) {
-    $arItem['ACTIVE'] = false;
-
-    if ($arItem['LINK'] == $sPageUrl)
-        $arItem['ACTIVE'] = true;
-
-    unset($arItem);
-}
-
 /**
  * @param array $arResult
  * @return array
@@ -81,8 +67,11 @@ $fBuild = function ($arResult) {
                 break;
             }
 
-            if ($arItem['IS_PARENT'] === true)
+            if ($arItem['IS_PARENT'] === true){
+
                 $arItem['ITEMS'] = $fBuild();
+
+            }
 
             $arItems[] = $arItem;
             $arItem = null;

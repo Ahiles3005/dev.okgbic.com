@@ -41,7 +41,7 @@ $arMenuParams = ArrayHelper::merge($arParameters, $arMenuParams);
         'ROOT_MENU_TYPE' => $arMenu['ROOT'],
         'CHILD_MENU_TYPE' => $arMenu['CHILD'],
         'MAX_LEVEL' => $arMenu['LEVEL'],
-        'MENU_CACHE_TYPE' => 'N',
+//        'MENU_CACHE_TYPE' => 'N',
         'USE_EXT' => 'Y',
         'DELAY' => 'N',
         'ALLOW_MULTI_SELECT' => 'N',
@@ -78,7 +78,12 @@ $arMenuParams = ArrayHelper::merge($arParameters, $arMenuParams);
         'SOCIAL_YOUTUBE' => $arResult['SOCIAL']['ITEMS']['YOUTUBE']['VALUE'],
 
         'BORDER_SHOW' => $arParams['MOBILE_MENU_BORDER_SHOW'],
-        'INFORMATION_VIEW' => $arParams['MOBILE_MENU_INFORMATION_VIEW']
+        'INFORMATION_VIEW' => $arParams['MOBILE_MENU_INFORMATION_VIEW'],
+
+        'MENU_CACHE_TYPE' => 'Y',
+        'MENU_CACHE_TIME' => 60*60*24,
+
+
     ], $arMenuParams),
     $this->getComponent()
 ); ?>

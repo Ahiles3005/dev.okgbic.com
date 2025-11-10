@@ -16,7 +16,10 @@ use intec\core\helpers\Type;
  */
 
 $bFirstItem = true;
+
 ?>
+
+<div  id="<?=$id?>">
 <div class="menu-submenu menu-submenu-<?= $iLevel ?>" data-role="menu" data-columns="<?= $arVisual['SECTION']['COLUMNS'] ?>">
     <div class="menu-submenu-wrapper">
         <?php foreach ($arItems as $arItem) { ?>
@@ -164,4 +167,5 @@ $bFirstItem = true;
             <?php $bFirstItem = false ?>
         <?php } ?>
     </div>
+</div>
 </div>
