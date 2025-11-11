@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/local/php_interface" isTestSource="false" packagePrefix="Olegpro" />
+      <excludeFolder url="file://$MODULE_DIR$/bitrix/templates/prom_s1/components/bitrix/catalog.element/catalog.default.1" />
+      <excludeFolder url="file://$MODULE_DIR$/bitrix/templates/prom_s1/components/bitrix/catalog.element/catalog.default.2" />
+      <excludeFolder url="file://$MODULE_DIR$/bitrix/templates/prom_s1/components/bitrix/catalog.element/catalog.default.3" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

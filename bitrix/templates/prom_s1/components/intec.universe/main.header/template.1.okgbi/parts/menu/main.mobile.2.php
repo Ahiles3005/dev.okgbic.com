@@ -31,60 +31,66 @@ $arParameters['SEARCH_PAGE'] = $arResult['SEARCH']['MODE'] === 'site' ? $arResul
 $arParameters['SEARCH_TYPE'] = ArrayHelper::fromRange(['page', 'popup'], $arParams['MOBILE_TYPE_SEARCH']);
 $arParameters['SEARCH_INPUT_ID'] = $arParameters['SEARCH_INPUT_ID'].'-menu-'.$arParameters['SEARCH_TYPE'].'-1';
 
-$arMenuParams = ArrayHelper::merge($arParameters, $arMenuParams); 
+$arMenuParams = ArrayHelper::merge($arParameters, $arMenuParams);
+
+
+$mobileMenuParams =     ArrayHelper::merge([
+    'ROOT_MENU_TYPE' => $arMenu['ROOT'],
+    'CHILD_MENU_TYPE' => $arMenu['CHILD'],
+    'MAX_LEVEL' => $arMenu['LEVEL'],
+//        'MENU_CACHE_TYPE' => 'N',
+    'USE_EXT' => 'Y',
+    'DELAY' => 'N',
+    'ALLOW_MULTI_SELECT' => 'N',
+    'ADDRESS_SHOW' => $arResult['ADDRESS']['SHOW']['MOBILE'] ? 'Y' : 'N',
+    'ADDRESS' => $arResult['ADDRESS']['VALUE'],
+    'CITY' => $arResult['CITY'],
+    'PHONES_SHOW' => $arResult['CONTACTS']['SHOW']['MOBILE'] ? 'Y' : 'N',
+    'PHONES' => $arPhones,
+    'EMAIL_SHOW' => $arResult['EMAIL']['SHOW']['MOBILE'] ? 'Y' : 'N',
+    'EMAIL' => $arResult['EMAIL']['VALUE'],
+    'LOGOTYPE_SHOW' => $arResult['LOGOTYPE']['SHOW']['MOBILE'] ? 'Y' : 'N',
+    'LOGOTYPE' => $arResult['LOGOTYPE']['PATH'],
+    'LOGOTYPE_LINK' => $arResult['LOGOTYPE']['LINK']['USE'] ? $arResult['LOGOTYPE']['LINK']['VALUE'] : null,
+    'REGIONALITY_USE' => $arResult['REGIONALITY']['USE'] ? 'Y' : 'N',
+    'SUBDOMAINS' => $arResult['SUBDOMAINS'],
+    'SUBDOMAINS_CITY' => $arResult['CITY'],
+
+    'AUTHORIZATION_SHOW' => $arResult['AUTHORIZATION']['SHOW']['MOBILE'] ? 'Y' : 'N',
+    'PROFILE_URL' => $arResult['URL']['PROFILE'],
+    'BASKET_SHOW' => $arResult['BASKET']['SHOW']['MOBILE'] ? 'Y' : 'N',
+    'BASKET_URL' => $arResult['URL']['BASKET'],
+    'DELAY_SHOW' => $arResult['DELAY']['SHOW']['MOBILE'] ? 'Y' : 'N',
+    'COMPARE_SHOW' => $arResult['COMPARE']['SHOW']['MOBILE'] ? 'Y' : 'N',
+    'COMPARE_URL' => $arResult['URL']['COMPARE'],
+    'COMPARE_CODE' => $arResult['COMPARE']['CODE'],
+    'COMPARE_IBLOCK_TYPE' => $arResult['COMPARE']['IBLOCK']['TYPE'],
+    'COMPARE_IBLOCK_ID' => $arResult['COMPARE']['IBLOCK']['ID'],
+    'ORDER_URL' => $arResult['URL']['ORDER'],
+
+    'SOCIAL_SHOW' => $arResult['SOCIAL']['SHOW']['MOBILE'] ? 'Y' : 'N',
+    'SOCIAL_VK' => $arResult['SOCIAL']['ITEMS']['VK']['VALUE'],
+    'SOCIAL_INSTAGRAM' => $arResult['SOCIAL']['ITEMS']['INSTAGRAM']['VALUE'],
+    'SOCIAL_FACEBOOK' => $arResult['SOCIAL']['ITEMS']['FACEBOOK']['VALUE'],
+    'SOCIAL_YOUTUBE' => $arResult['SOCIAL']['ITEMS']['YOUTUBE']['VALUE'],
+
+    'BORDER_SHOW' => $arParams['MOBILE_MENU_BORDER_SHOW'],
+    'INFORMATION_VIEW' => $arParams['MOBILE_MENU_INFORMATION_VIEW'],
+
+    'MENU_CACHE_TYPE' => 'Y',
+    'MENU_CACHE_TIME' => 60*60*24,
+
+
+], $arMenuParams)
 ?>
 
 <?php $APPLICATION->IncludeComponent(
     'bitrix:menu',
-    'mobile.2',
-    ArrayHelper::merge([
-        'ROOT_MENU_TYPE' => $arMenu['ROOT'],
-        'CHILD_MENU_TYPE' => $arMenu['CHILD'],
-        'MAX_LEVEL' => $arMenu['LEVEL'],
-//        'MENU_CACHE_TYPE' => 'N',
-        'USE_EXT' => 'Y',
-        'DELAY' => 'N',
-        'ALLOW_MULTI_SELECT' => 'N',
-        'ADDRESS_SHOW' => $arResult['ADDRESS']['SHOW']['MOBILE'] ? 'Y' : 'N',
-        'ADDRESS' => $arResult['ADDRESS']['VALUE'],
-        'CITY' => $arResult['CITY'],
-        'PHONES_SHOW' => $arResult['CONTACTS']['SHOW']['MOBILE'] ? 'Y' : 'N',
-        'PHONES' => $arPhones,
-        'EMAIL_SHOW' => $arResult['EMAIL']['SHOW']['MOBILE'] ? 'Y' : 'N',
-        'EMAIL' => $arResult['EMAIL']['VALUE'],
-        'LOGOTYPE_SHOW' => $arResult['LOGOTYPE']['SHOW']['MOBILE'] ? 'Y' : 'N',
-        'LOGOTYPE' => $arResult['LOGOTYPE']['PATH'],
-        'LOGOTYPE_LINK' => $arResult['LOGOTYPE']['LINK']['USE'] ? $arResult['LOGOTYPE']['LINK']['VALUE'] : null,
-        'REGIONALITY_USE' => $arResult['REGIONALITY']['USE'] ? 'Y' : 'N',
-        'SUBDOMAINS' => $arResult['SUBDOMAINS'],
-        'SUBDOMAINS_CITY' => $arResult['CITY'],
-
-        'AUTHORIZATION_SHOW' => $arResult['AUTHORIZATION']['SHOW']['MOBILE'] ? 'Y' : 'N',
-        'PROFILE_URL' => $arResult['URL']['PROFILE'],
-        'BASKET_SHOW' => $arResult['BASKET']['SHOW']['MOBILE'] ? 'Y' : 'N',
-        'BASKET_URL' => $arResult['URL']['BASKET'],
-        'DELAY_SHOW' => $arResult['DELAY']['SHOW']['MOBILE'] ? 'Y' : 'N',
-        'COMPARE_SHOW' => $arResult['COMPARE']['SHOW']['MOBILE'] ? 'Y' : 'N',
-        'COMPARE_URL' => $arResult['URL']['COMPARE'],
-        'COMPARE_CODE' => $arResult['COMPARE']['CODE'],
-        'COMPARE_IBLOCK_TYPE' => $arResult['COMPARE']['IBLOCK']['TYPE'],
-        'COMPARE_IBLOCK_ID' => $arResult['COMPARE']['IBLOCK']['ID'],
-        'ORDER_URL' => $arResult['URL']['ORDER'],
-
-        'SOCIAL_SHOW' => $arResult['SOCIAL']['SHOW']['MOBILE'] ? 'Y' : 'N',
-        'SOCIAL_VK' => $arResult['SOCIAL']['ITEMS']['VK']['VALUE'],
-        'SOCIAL_INSTAGRAM' => $arResult['SOCIAL']['ITEMS']['INSTAGRAM']['VALUE'],
-        'SOCIAL_FACEBOOK' => $arResult['SOCIAL']['ITEMS']['FACEBOOK']['VALUE'],
-        'SOCIAL_YOUTUBE' => $arResult['SOCIAL']['ITEMS']['YOUTUBE']['VALUE'],
-
-        'BORDER_SHOW' => $arParams['MOBILE_MENU_BORDER_SHOW'],
-        'INFORMATION_VIEW' => $arParams['MOBILE_MENU_INFORMATION_VIEW'],
-
-        'MENU_CACHE_TYPE' => 'Y',
-        'MENU_CACHE_TIME' => 60*60*24,
-
-
-    ], $arMenuParams),
+    'mobile.2-new',
+    $mobileMenuParams,
     $this->getComponent()
-); ?>
+);
+?>
 <?php unset($arMenu) ?>
+
+
